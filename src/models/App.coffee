@@ -6,6 +6,6 @@ class window.App extends Backbone.Model
 
   newGame: ->
     @set 'game', game = new Game()
-
+    console.log 'new game created'
 
 
