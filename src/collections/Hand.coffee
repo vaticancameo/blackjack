@@ -20,4 +20,19 @@ class window.Hand extends Backbone.Collection
     # when there is an ace, it offers you two scores - the original score, and score + 10.
     [@minScore(), @minScore() + 10 * @hasAce()]
 
+  checkFor21: ->
+    if _.contains(@scores(), 21) then @trigger('win', this)
 
+  isBusted: ->
+    if @scores()[0] > 21 then @trigger('lose', this)
+
+  checkScore: ->
+    a = @checkFor21()
+    b = @isBusted()
+    console.log(a,b)
+
+  bestScore: ->
+    return if (@scores()[1] > 21) then @scores()[0] else @scores()[1]
+
+#@trigger('lose', this)
+#console.log('busted!') for score in @scores when score > 21
