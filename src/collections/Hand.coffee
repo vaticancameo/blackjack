@@ -27,9 +27,9 @@ class window.Hand extends Backbone.Collection
     if @scores()[0] > 21 then @trigger('lose', this)
 
   checkScore: ->
-    a = @checkFor21()
-    b = @isBusted()
-    console.log(a,b)
+    @checkFor21()
+    @isBusted()
+
 
   bestScore: ->
     return if (@scores()[1] > 21) then @scores()[0] else @scores()[1]

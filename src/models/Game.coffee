@@ -9,17 +9,18 @@ class window.Game extends Backbone.Model
     if @get('playerHand').bestScore() == 21
       @revealDealerHand()
       if @get('dealerHand').bestScore() == 21
-        console.log('we tied')
+        @trigger('gameTie', this)
       else
-        console.log('player won with BJ')
+        @trigger('playerWin', this)
 
   stand: ->
     @revealDealerHand()
     if @get('dealerHand').bestScore() == 21
-      console.log 'Dealer BJ'
+      @trigger('dealerWin', this)
     else
       while (@get('dealerHand').bestScore() < 17)
         @get('dealerHand').hit()
+    if @get('dealerHand').bestScore() < 22 and @get('playerHand').bestScore() < 22
       @compareScores()
 
   revealDealerHand: ->
@@ -27,11 +28,11 @@ class window.Game extends Backbone.Model
 
   compareScores: ->
     if @get('dealerHand').bestScore() > @get('playerHand').bestScore()
-      console.log('deal wins from score')
+      @trigger('dealerWin', this)
     else if @get('dealerHand').bestScore() < @get('playerHand').bestScore()
-      console.log('player wins from score')
+      @trigger('playerWin', this)
     else
-      console.log('push from score (tie)')
+      @trigger('gameTie', this);
 
 
 

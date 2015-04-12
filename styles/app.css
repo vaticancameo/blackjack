@@ -1,3 +1,7 @@
+.covered {
+  background-image: url('img/card-back.png');
+}
+
 .card {
   float: left;
   border: solid 1px black;
@@ -5,10 +9,6 @@
   border-radius: 5px;
   height: 140px;
   margin-right: 20px;
-}
-
-.covered {
-  background-color: black;
 }
 
 .hand {
